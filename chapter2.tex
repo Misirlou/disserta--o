@@ -1,0 +1,77 @@
+\chapter{Estado da Arte} \label{chap:sota}
+
+\section*{}
+
+O presente capítulo identificará referências bibliográficas sobre o presente estado da computação em nuvem, as suas utilizações e proliferação. De seguida, apresenta trabalhos anteriores sobre escalonamento de tarefas na nuvem, seguido de análise de trabalhos sobre interferências entre máquinas virtuais e sobre o simulador a utilizar, SimGrid. 
+
+% Neste capítulo é descrito o estado da arte e são
+% apresentados trabalhos relacionados para mostrar o que existe no
+% mesmo domínio e quais os problemas em aberto.
+% Deve deixar claro que existe uma oportunidade de desenvolvimento que
+% cobre alguma falha concreta .
+
+% O capítulo deve também efetuar uma revisão tecnológica às principais
+% ferramentas utilizáveis no âmbito do projeto, justificando futuras
+% escolhas.
+
+\section{Computação em Nuvem}
+
+No artigo \cite{armbrust2010view}, os autores apresentam bastante sucintamente a utilidade dos serviços de computação oferecidos atualmente e os principais obstáculos e oportunidades de desenvolvimento. Em \cite{buyya2009cloud} os autores apresentam a nuvem como a futura quinta utilidade e o modelo de negócio que é utilizado pelos fornecedores de serviço ainda hoje. Para o cumprimento dos contratos estipulados e combater os atrasos são provisionados recursos a mais dos que foram contratados, diminuindo a eficiência da nuvem, como explicado em \cite{armbrust2010view}, \cite{nathuji2010q} e \cite{corradi2012vm}. Em \cite{wen2012comparison} é feita a comparação entre os dois principais programas de gestão de nuvens, OpenStack e OpenNebula. Os autores de \cite{vecchiola2009high} demonstram a utilidade da computação em nuvem na comunidade científica, apresentando um estudo sobre a utilização do poder computacional na classificação de dados de expressão genética e compilação de imagens de ressonâncias magnéticas. Devido à disponibilização dos dados e configuração do CERN para a realização desta dissertação, foi escolhido o OpenStack por ser o mesmo utilizado pela organização \cite{openstackcern}. O algoritmo a ser replicado para efeitos de teste e avaliação de resultados está descrito em \cite{gong2012nova}.
+
+% Neste capítulo é ilustrada a utilização de macros \LaTeX\ para definir
+% entradas no índice remissivo e são feitas diversas referências
+% bibliográficas, usando-se texto de um artigo apresentado na Conferência 
+% XATA2006~\cite{kn:MVL06-xata}.
+
+% Nos últimos tempos têm surgido diversas soluções, apresentadas por
+% empresas do sector Automação de Sistemas para a disponibilização de
+% sistemas \scadadms{} na \textit{Web}.
+
+\section{Escalonamento de Tarefas em Nuvens de Computação}\label{sec:escalonamento}
+
+Existe na área das nuvens de computação bastante bibliografia teórica e prática sobre escalonamento. Em \cite{abraham2000nature} é estudada a utilização de algoritmos probabilísticos, como algoritmos genéticos, arrefecimento simulado e pesquisa tabu. Em \cite{daoud2008high} é descrito um algoritmo de escalonamento por listagem. No entanto as duas soluções requerem um conhecimento à priori da totalidade das tarefas que vão ser executadas, o que não é possível na maioria dos casos. Em \cite{topcuoglu2002performance} os autores apresentam os algoritmos de primeiro tempo de chegada heterogéneo e caminho crítico no processador, algoritmos que são focados na rapidez da resposta. Vários trabalhos focam-se no escalonamento de tarefas de área científica, cuja topologia é conhecida e possa ser dividida entre várias sub-tarefas diferentes. Este escalonamento é NP-completo. Os autores de \cite{gupta2012optimizing} utilizam uma heurística que aproxima as sub-tarefas dentro da rede, de maneira a acelerar o processo de partilha de dados entre as tarefas e tenta que tarefas iguais fiquem em nós de igual capacidade, para que possam todos trabalhar à sua velocidade máxima. O trabalho em \cite{chen2009ant} segue a mesma lógica, utilizando um algoritmo de colónia de formigas. Os autores de \cite{su2013cost} utilizam ótimos de Pareto para determinar o melhor nó para alocar as tarefas, melhorando sucessivamente a sua solução. Em \cite{zheng2013budget} é demonstrada uma extensão ao algoritmo de escalonamento primeiro tempo de chegada heterogéneo. 
+
+% \emph{Scalable Vector Graphics}\index{SVG}\index{XML!SVG} é uma
+% linguagem em formato XML que descreve gráficos de duas dimensões. 
+% Este formato padronizado pela W3C (\emph{World Wide Web Consortium})
+% é livre de patentes ou direitos de autor e está totalmente
+% documentado, à semelhança de outros W3CN
+% standards~\cite{kn:svgdoc}.
+
+% Sendo uma linguagem XML, o \svg{} herda uma série de vantagens: a
+% possibilidade de transformar \svg{} usando técnicas como
+% XSLT\index{XML!XSLT}, de embeber \svg{} em qualquer documento
+% XML\index{XML} usando \textit{namespaces} ou até de  
+% estilizar \svg{} recorrendo a CSS\index{CSS} (\emph{Cascade Style Sheets}). 
+% De uma forma geral, pode dizer-se que \svg{}s interagem bem com as
+% atuais tecnologias ligadas ao XML e à Web, tal como referido
+% em~\cite{kn:svgibm,kn:svgw3c}.
+
+%\subsection{Heurísticas de escalonamento}
+
+\section{Tecnologias de Virtualização}
+Virtualização é a tecnologia que permite a um único computador isolar as várias tarefas que são executadas simultaneamente, sendo controlados por um monitor de maquinas virtuais em cada nó, o hipervisor. Em \cite{gu2012state} são apresentadas os hipervisores mais utilizados no mercado, programas que criam automaticamente em cada computador as máquinas virtuais necessárias para a execução de tarefas, concluindo com a listagem de problemas comuns entre eles. São também comparados e testados vários hipervisores em \cite{younge2011analysis}, obtendo resultados que favorecem o KVM para nuvens de computação de alto rendimento. 
+Em \cite{cucinotta2011providing} é sugerido um escalonamento de tarefas a nível de nós individuais, ficando cada nó responsável por garantir a qualidade do serviço, realocando recursos a cada máquina virtual conforme necessário.
+
+\subsection{Interferências em Tecnologias de Virtualização}\label{sec:interferencia} 
+A interferência entre máquinas virtuais no mesmo anfitrião começou por ser estudada em \cite{koh2007analysis}, apresentando motivos para os atrasos observados, executando testes experimentais para conjuntos de duas máquinas virtuais simultâneas e usando regressão linear para prever conjuntos não testados. O estudo de interferência em tarefas que requerem comunicações dentro da rede em \cite{pu2010understanding}, utilizando tarefas limitadas por poder de computacional ou velocidade da rede, demonstra o efeito que a concorrência em componentes partilhados provoca no atraso das tarefas e conclui que a combinação de tarefas com usos de componentes diferentes leva ao menor efeito de interferência. Os autores de \cite{nathuji2010q} determinam que para as qualidade de serviço ser obedecida, cada nó deverá ter um espaço livre para poder alocar mais espaço a uma das virtualizações, não sendo eficiente na utilização dos recursos a troco de oferecer um serviço mais fidedigno. Em \cite{zhu2012performance} são construídos modelos de interferência entre máquinas virtuais, utilizando o modelo e um conjunto de regras para determinar se duas tarefas podem ser consolidadas no mesmo nó.
+
+
+
+\section{SimGrid}\label{sec:simgrid} 
+SimGrid é a plataforma de simulação a ser utilizada para teste do algoritmo desenvolvido. Os autores de \cite{casanova2001sg} e \cite{legrand2003sg} demonstram casos de uso do simulador para testar algoritmos de escalonamento em versões anteriores da plataforma, podendo-se encontrar em \cite{casanova2008sg} um estudo com a versão mais recente. 
+
+
+\section{Conclusões}
+O estudo da bibliografia revela a importância das nuvens computacionais para a indústria na atualidade. Sendo uma tecnologia ainda em desenvolvimento, apresenta vulnerabilidades já identificadas que podem ser corrigidas para melhorar o serviço atual. Os estudos sobre interferência mostram uma redução de desempenho para valores até um terço do original entre um par de tarefas, podendo-se concluir que as tarefas executadas em série em vez de paralelizadas levariam a um desempenho superior. Esta interferência devido a recursos partilhados, por exemplo memória \textit{cache}, impossíveis de serem divididos por um hipervisor pode ser combatida com a adaptação de \textit{hardware} que não utilize partilha de recursos ou a adaptação da atribuição de tarefas para verificar a consolidação de tarefas com pouca interferência. 
+
+% \begin{ganttchart}{1}{16}
+% 	\ganttitlelist{Novembro,Dezembro,Janeiro,Fevereiro}{4}\\
+% 	\gantttitlelist{1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4}{1}\\
+% 	\ganttbar{Estudo}{1}{2}\\
+% 	%\gantttitlelist{Março,Abril,Maio,Junho}{4}\\
+% 	%\gantttitlelist{1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4}{1}\\
+% \end{ganttchart}
+
+% No final do capítulo deverá ser apresentado um resumo com as 
+% principais conclusões que se podem tirar. 
